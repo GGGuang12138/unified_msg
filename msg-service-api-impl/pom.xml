@@ -11,6 +11,13 @@
 
     <artifactId>msg-service-api-impl</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.gg</groupId>
+            <artifactId>msg-service-api</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+    </dependencies>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
