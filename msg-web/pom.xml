@@ -19,6 +19,11 @@
             <artifactId>msg-handler</artifactId>
             <version>0.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.gg</groupId>
+            <artifactId>msg-service-api</artifactId>
+            <version>0.0.1</version>
+        </dependency>
         <!-- Spring Web-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

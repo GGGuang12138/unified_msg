@@ -1,4 +1,4 @@
-package com.gg.msg.support.pipline;
+package com.gg.msg.support.pipeline;
 
 import java.util.List;
 

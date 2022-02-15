@@ -1,4 +1,4 @@
-package com.gg.msg.support.pipline;
+package com.gg.msg.support.pipeline;
 
 /**
  * 责任链操作数据模型
