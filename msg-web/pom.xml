@@ -19,19 +19,10 @@
             <artifactId>msg-handler</artifactId>
             <version>0.0.1</version>
         </dependency>
-        <!--Spring Web-->
+        <!-- Spring Web-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <!--工具类相关-->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
         </dependency>
     </dependencies>
 

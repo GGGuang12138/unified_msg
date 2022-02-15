@@ -1,8 +1,10 @@
 package com.gg.msg.handler.script;
 
 import com.gg.msg.handler.domain.SmsParam;
+import com.gg.msg.support.dao.SmsRecordDao;
 import com.gg.msg.support.domain.SmsRecord;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +17,10 @@ import java.util.List;
 @Service
 @Slf4j
 public class TencentSmsScript implements SmsScript{
+
+    @Autowired
+    private SmsRecordDao smsRecordDao;
+
     @Override
     public List<SmsRecord> send(SmsParam smsParam) throws Exception {
         log.info("发送腾讯云短信,短信参数为：{}",smsParam);
