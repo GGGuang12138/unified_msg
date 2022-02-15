@@ -1,6 +1,7 @@
 package com.gg.msg.enums;
 
 /**
+ * 消息类型
  * @author: GG
  * @date: 2022/2/14 11:35 下午
  */
