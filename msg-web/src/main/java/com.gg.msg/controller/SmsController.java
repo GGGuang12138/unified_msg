@@ -25,22 +25,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class SmsController {
 
     @Autowired
-    private SmsHandler smsHandler;
-    @Autowired
     private SendService sendService;
-
-    /**
-     * 测试发送短信
-     * @param phone 手机号
-     * @return
-     */
-    @GetMapping("/sendSms")
-    public boolean sendSms(String phone,String content,Long messageTemplateId ) {
-
-        TaskInfo taskInfo = TaskInfo.builder().receiver(new HashSet<>(Arrays.asList(phone)))
-                .content(content).messageTemplateId(messageTemplateId).build();
-        return smsHandler.doHandler(taskInfo);
-    }
 
 
     @GetMapping("/sendSmsV2")
@@ -49,10 +34,32 @@ public class SmsController {
         /**
          *
          * messageTemplate Id 为1 的模板内容
-         * {"auditStatus":10,"auditor":"yyyyyyz","created":1636978066,"creator":"yyyyc","deduplicationTime":1,"expectPushTime":"0","flowId":"yyyy","id":1,"idType":20,"isDeleted":0,"isNightShield":0,"msgContent":"{\"content\":\"{$contentValue}\"}","msgStatus":10,"msgType":10,"name":"test短信","proposer":"yyyy22","sendAccount":66,"sendChannel":30,"team":"yyyt","templateType":10,"updated":1636978066,"updator":"yyyyu"}
+         * {"auditStatus":10,
+         * "auditor":"yyyyyyz",
+         * "created":1636978066,
+         * "creator":"yyyyc",
+         * "deduplicationTime":1,
+         * "expectPushTime":"0",
+         * "flowId":"yyyy",
+         * "id":1,
+         * "idType":20,
+         * "isDeleted":0,
+         * "isNightShield":0,
+         * "msgContent":"{\"content\":\"{$contentValue}\"}",
+         * "msgStatus":10,
+         * "msgType":10,
+         * "name":"test短信",
+         * "proposer":"yyyy22",
+         * "sendAccount":66,
+         * "sendChannel":30,
+         * "team":"yyyt",
+         * "templateType":10,
+         * "updated":1636978066,
+         * "updator":"yyyyu"}
          *
          */
 
+        phone = "15625501056";
         // 文案参数
         Map<String, String> variables = new HashMap<>();
         variables.put("contentValue", "6666");

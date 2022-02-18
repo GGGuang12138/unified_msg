@@ -24,20 +24,20 @@ public class SendMqAction implements BusinessProcess {
     @Autowired
     private KafkaTemplate kafkaTemplate;
 
-    @Value("${msg.business.topic.name}")
+    @Value("${msg.topic.name}")
     private String topicName;
 
     @Override
     public void process(ProcessContext context) {
         SendTaskModel sendTaskModel = (SendTaskModel) context.getProcessModel();
         try {
-            kafkaTemplate.send(topicName, JSON.toJSONString(sendTaskModel.getTaskInfo()),
-                    new SerializerFeature[] {SerializerFeature.WriteClassName});
+            kafkaTemplate.send(topicName, JSON.toJSONString(sendTaskModel.getTaskInfo(),
+                    new SerializerFeature[] {SerializerFeature.WriteClassName}));
         } catch (Exception exception) {
             context.setNeedBreak(true).setResponse(BasicResultVO.fail(ResultStatus.SERVICE_ERROR));
-            log.error("send kafka fail! e:{},params:{}", Throwables.getStackTraceAsString(exception)
-            ,JSON.toJSONString(CollUtil.getFirst(sendTaskModel.getTaskInfo().listIterator())));
+            log.error("send kafka fail! e:{},params:{}", Throwables.getStackTraceAsString(exception),JSON.toJSONString(CollUtil.getFirst(sendTaskModel.getTaskInfo().listIterator())));
         }
+        log.info("发送mq消息:",sendTaskModel);
 
 
     }

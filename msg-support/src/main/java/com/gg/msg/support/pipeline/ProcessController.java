@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.gg.msg.enums.ResultStatus;
 import com.gg.msg.vo.BasicResultVO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;

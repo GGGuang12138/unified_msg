@@ -6,8 +6,8 @@ package com.gg.msg.enums;
  * @date: 2022/2/14 11:32 下午
  */
 public enum IdType {
-    USER_ID(10, "userid"),
-    DID(20, "did"),
+    USER_ID(10, "userId"),
+    DID(20, "dId"),
     PHONE(30, "phone"),
     OPEN_ID(40, "openId"),
     EMAIL(50, "email");

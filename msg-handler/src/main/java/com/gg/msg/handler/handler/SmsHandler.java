@@ -29,20 +29,20 @@ public class SmsHandler implements Handler{
 
     @Override
     public boolean doHandler(TaskInfo taskInfo) {
-        SmsParam smsParam = SmsParam.builder()
-                .phones(taskInfo.getReceiver())
-                .content(taskInfo.getContent())
-                .messageTemplateId(taskInfo.getMessageTemplateId())
-                .phones(taskInfo.getReceiver()).build();
-        List<SmsRecord> recordList = new ArrayList<>();
-        try {
-            recordList = smsScript.send(smsParam);
-        } catch (Exception exception) {
-            log.error("发送失败");
-        }
-        if (!CollUtil.isEmpty(recordList)) {
-            smsRecordDao.saveAll(recordList);
-        }
+//        SmsParam smsParam = SmsParam.builder()
+//                .phones(taskInfo.getReceiver())
+//                .content(taskInfo.getContent())
+//                .messageTemplateId(taskInfo.getMessageTemplateId())
+//                .phones(taskInfo.getReceiver()).build();
+//        List<SmsRecord> recordList = new ArrayList<>();
+//        try {
+//            recordList = smsScript.send(smsParam);
+//        } catch (Exception exception) {
+//            log.error("发送失败");
+//        }
+//        if (!CollUtil.isEmpty(recordList)) {
+//            smsRecordDao.saveAll(recordList);
+//        }
         return false;
     }
 }

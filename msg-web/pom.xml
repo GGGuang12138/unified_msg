@@ -21,7 +21,7 @@
         </dependency>
         <dependency>
             <groupId>com.gg</groupId>
-            <artifactId>msg-service-api</artifactId>
+            <artifactId>msg-service-api-impl</artifactId>
             <version>0.0.1</version>
         </dependency>
         <!-- Spring Web-->

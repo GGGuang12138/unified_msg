@@ -1,5 +1,6 @@
 package com.gg.msg.domain;
 
+import com.gg.msg.dto.ContentModel;
 import lombok.Builder;
 import lombok.Data;
 
@@ -51,7 +52,7 @@ public class TaskInfo {
     /**
      * 发送文案内容
      */
-    private String content;
+    private ContentModel contentModel;
 
     /**
      * 发送账号（邮件下可有多个发送账号、短信可有多个发送账号..）

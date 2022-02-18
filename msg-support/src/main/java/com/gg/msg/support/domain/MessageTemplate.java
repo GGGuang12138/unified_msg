@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * 消息模版
@@ -22,7 +23,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Entity
 @Accessors(chain = true)
-public class MessageTemplate {
+public class MessageTemplate implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

@@ -50,11 +50,38 @@ public class PipelineConfig {
         ProcessTemplate processTemplate = new ProcessTemplate();
         ArrayList<BusinessProcess> processList = new ArrayList<>();
 
-        processList.add(new PreParamCheckAction());
-        processList.add(new AssembleAction());
-        processList.add(new SendMqAction());
+        processList.add(preParamCheckAction());
+        processList.add(assembleAction());
+        processList.add(sendMqAction());
 
         processTemplate.setProcessList(processList);
         return processTemplate;
+    }
+
+    /**
+     * 组装参数Action
+     * @return
+     */
+    @Bean
+    public AssembleAction assembleAction() {
+        return new AssembleAction();
+    }
+
+    /**
+     * 参数校验Action
+     * @return
+     */
+    @Bean
+    public PreParamCheckAction preParamCheckAction() {
+        return new PreParamCheckAction();
+    }
+
+    /**
+     * 发送消息至MQ的Action
+     * @return
+     */
+    @Bean
+    public SendMqAction sendMqAction() {
+        return new SendMqAction();
     }
 }
