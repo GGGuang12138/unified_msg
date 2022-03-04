@@ -1,5 +1,6 @@
 package com.gg.msg.service.api.service;
 
+import com.gg.msg.service.api.domain.BatchSendRequest;
 import com.gg.msg.service.api.domain.SendRequest;
 import com.gg.msg.service.api.domain.SendResponse;
 
@@ -12,5 +13,5 @@ public interface SendService {
 
     SendResponse send(SendRequest sendRequest);
 
-    SendResponse batchSend(SendRequest sendRequest);
+    SendResponse batchSend(BatchSendRequest batchSendRequest);
 }
