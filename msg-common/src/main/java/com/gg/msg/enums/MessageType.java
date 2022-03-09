@@ -1,14 +1,20 @@
 package com.gg.msg.enums;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+
 /**
  * 消息类型
  * @author: GG
  * @date: 2022/2/14 11:35 下午
  */
+@Getter
+@AllArgsConstructor
 public enum MessageType {
-    NOTICE(10,"通知类消息"),
-    MARKETING(20,"营销类消息"),
-    AUTH_CODE(30,"验证码消息")
+    NOTICE(10,"通知类消息","notice"),
+    MARKETING(20,"营销类消息","marketing"),
+    AUTH_CODE(30,"验证码消息","auth_code")
     ;
 
     /**
@@ -18,25 +24,20 @@ public enum MessageType {
 
     private Integer code;
     private String description;
+    private String codeEn;
 
-    MessageType(Integer code, String description) {
-        this.code = code;
-        this.description = description;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    /**
+     * 通过code获取enum
+     * @param code
+     * @return
+     */
+    public static MessageType getEnumByCode(Integer code) {
+        MessageType[] values = values();
+        for (MessageType value : values) {
+            if (value.getCode().equals(code)) {
+                return value;
+            }
+        }
+        return null;
     }
 }

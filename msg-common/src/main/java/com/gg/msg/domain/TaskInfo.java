@@ -1,8 +1,10 @@
 package com.gg.msg.domain;
 
 import com.gg.msg.dto.ContentModel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
@@ -13,6 +15,8 @@ import java.util.Set;
  */
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class TaskInfo {
     /**
      * 消息模板Id
