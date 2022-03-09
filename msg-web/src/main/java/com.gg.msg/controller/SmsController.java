@@ -7,8 +7,11 @@ import com.gg.msg.service.api.domain.SendRequest;
 import com.gg.msg.service.api.domain.SendResponse;
 import com.gg.msg.service.api.enums.BusinessCode;
 import com.gg.msg.service.api.service.SendService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
@@ -22,10 +25,20 @@ import java.util.concurrent.locks.ReentrantLock;
  * @date: 2022/2/15 12:27 上午
  */
 @RestController
+@Slf4j
 public class SmsController {
 
     @Autowired
     private SendService sendService;
+
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+
+
+    @RequestMapping("/redis")
+    public void testRedis() {
+        log.info(redisTemplate.opsForValue().get("1"));
+    }
 
 
     @GetMapping("/sendSmsV2")
