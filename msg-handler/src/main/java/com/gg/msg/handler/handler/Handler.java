@@ -8,5 +8,5 @@ import com.gg.msg.domain.TaskInfo;
  */
 public interface Handler {
 
-    boolean doHandler(TaskInfo TaskInfo);
+    void doHandler(TaskInfo TaskInfo);
 }

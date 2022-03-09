@@ -1,7 +1,9 @@
 package com.gg.msg.handler.handler;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.StrUtil;
 import com.gg.msg.domain.TaskInfo;
+import com.gg.msg.dto.SmsContentModel;
 import com.gg.msg.handler.domain.SmsParam;
 import com.gg.msg.handler.script.SmsScript;
 import com.gg.msg.support.dao.SmsRecordDao;
@@ -20,7 +22,7 @@ import java.util.List;
  */
 @Component
 @Slf4j
-public class SmsHandler implements Handler{
+public class SmsHandler extends BaseHandler{
 
     @Autowired
     private SmsScript smsScript;
@@ -28,21 +30,35 @@ public class SmsHandler implements Handler{
     private SmsRecordDao smsRecordDao;
 
     @Override
-    public boolean doHandler(TaskInfo taskInfo) {
-//        SmsParam smsParam = SmsParam.builder()
-//                .phones(taskInfo.getReceiver())
-//                .content(taskInfo.getContent())
-//                .messageTemplateId(taskInfo.getMessageTemplateId())
-//                .phones(taskInfo.getReceiver()).build();
-//        List<SmsRecord> recordList = new ArrayList<>();
-//        try {
-//            recordList = smsScript.send(smsParam);
-//        } catch (Exception exception) {
-//            log.error("发送失败");
-//        }
-//        if (!CollUtil.isEmpty(recordList)) {
-//            smsRecordDao.saveAll(recordList);
-//        }
-        return false;
+    public void handler(TaskInfo taskInfo) {
+                SmsParam smsParam = SmsParam.builder()
+                .phones(taskInfo.getReceiver())
+                .content(getSmsContent(taskInfo))
+                .messageTemplateId(taskInfo.getMessageTemplateId())
+                .phones(taskInfo.getReceiver()).build();
+        List<SmsRecord> recordList = new ArrayList<>();
+        try {
+            recordList = smsScript.send(smsParam);
+        } catch (Exception exception) {
+            log.error("发送失败");
+        }
+        if (!CollUtil.isEmpty(recordList)) {
+            smsRecordDao.saveAll(recordList);
+        }
+    }
+
+    /**
+     * 如果有输入链接，则把链接拼在文案后
+     * <p>
+     * PS: 这里可以考虑将链接 转 短链
+     * PS: 如果是营销类的短信，需考虑拼接 回TD退订 之类的文案
+     */
+    private String getSmsContent(TaskInfo taskInfo) {
+        SmsContentModel smsContentModel = (SmsContentModel) taskInfo.getContentModel();
+        if (StrUtil.isNotBlank(smsContentModel.getUrl())) {
+            return smsContentModel.getContent() + " " + smsContentModel.getUrl();
+        } else {
+            return smsContentModel.getContent();
+        }
     }
 }

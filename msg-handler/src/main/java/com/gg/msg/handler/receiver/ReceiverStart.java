@@ -39,12 +39,12 @@ public class ReceiverStart {
     private static Integer index = 0;
 
     /**
+     * Receiver为多例
      * 为每个渠道不同的消息类型 创建一个Receiver对象
      * 项目启动的时候执行这个方法
      */
     @PostConstruct
     public void init() {
-        new ReentrantLock().lock();
         for (int i = 0; i < groupIds.size(); i++) {
             context.getBean(Receiver.class);
         }
