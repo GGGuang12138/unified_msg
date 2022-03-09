@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.gg.msg.domain.TaskInfo;
 import com.gg.msg.dto.SmsContentModel;
+import com.gg.msg.enums.ChannelType;
 import com.gg.msg.handler.domain.SmsParam;
 import com.gg.msg.handler.script.SmsScript;
 import com.gg.msg.support.dao.SmsRecordDao;
@@ -28,6 +29,10 @@ public class SmsHandler extends BaseHandler{
     private SmsScript smsScript;
     @Autowired
     private SmsRecordDao smsRecordDao;
+
+    public SmsHandler() {
+        channelCode = ChannelType.SMS.getCode();
+    }
 
     @Override
     public void handler(TaskInfo taskInfo) {

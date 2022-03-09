@@ -1,6 +1,7 @@
 package com.gg.msg.handler.pending;
 
 import com.gg.msg.domain.TaskInfo;
+import com.gg.msg.handler.handler.Handler;
 import com.gg.msg.handler.handler.HandlerHolder;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -25,7 +26,7 @@ public class TaskThread implements Runnable{
     @Override
     public void run() {
         // 获取对应消息的处理器去执行
-        handlerHolder.route(taskInfo.getSendChannel())
-                .doHandler(taskInfo);
+        Handler handler = handlerHolder.route(taskInfo.getSendChannel());
+        handler.doHandler(taskInfo);
     }
 }

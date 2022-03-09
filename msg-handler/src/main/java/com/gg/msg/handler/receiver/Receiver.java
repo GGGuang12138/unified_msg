@@ -27,7 +27,6 @@ import java.util.concurrent.ExecutorService;
  * @author: GG
  * @date: 2022/3/4 10:03 下午
  */
-@Component
 @Slf4j
 public class Receiver {
 
