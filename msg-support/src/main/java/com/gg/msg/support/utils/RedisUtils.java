@@ -20,7 +20,7 @@ import java.util.Map;
  */
 @Component
 @Slf4j
-public class RedisUtil {
+public class RedisUtils {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
