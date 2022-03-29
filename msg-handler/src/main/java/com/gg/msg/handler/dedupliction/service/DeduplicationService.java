@@ -1,4 +1,4 @@
-package com.gg.msg.handler.dedupliction;
+package com.gg.msg.handler.dedupliction.service;
 
 import com.gg.msg.handler.domain.DeduplicationParam;
 

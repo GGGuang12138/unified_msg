@@ -1,4 +1,4 @@
-package com.gg.msg.handler.dedupliction;
+package com.gg.msg.handler.dedupliction.service;
 
 import cn.hutool.core.collection.CollUtil;
 import com.gg.msg.constant.BaseConstant;
@@ -44,7 +44,9 @@ public abstract class AbstractDeduplicationService implements DeduplicationServi
             }
         }
         // 放进redis
-        putInRedis(readyPutRedisKey,inRedisValue,param);
+        if (readyPutRedisKey.size() > 0){
+            putInRedis(readyPutRedisKey,inRedisValue,param);
+        }
         taskInfo.getReceiver().removeAll(filterReceiver);
     }
 

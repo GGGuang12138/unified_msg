@@ -23,7 +23,12 @@ public class TencentSmsScript implements SmsScript{
 
     @Override
     public List<SmsRecord> send(SmsParam smsParam) throws Exception {
-        log.info("发送腾讯云短信,短信参数为：{}",smsParam);
+        if (smsParam.getPhones().size() == 0){
+            log.info("发送腾讯云短信异常,目标手机号码不存在");
+            throw new Exception("操作失败");
+        }else{
+            log.info("发送腾讯云短信,短信参数为：{}",smsParam);
+        }
         //TODO：对接腾讯云短信（发送HTTP请求/接入对方的SDK）
         return null;
     }
