@@ -36,7 +36,7 @@ public class Receiver {
     @Autowired
     private ApplicationContext applicationContext;
 
-    @KafkaListener(topics = {"unifiedMsg"})
+//    @KafkaListener(topics = {"unifiedMsg"})
     public void consumer(ConsumerRecord<?, String> consumerRecord, @Header(KafkaHeaders.GROUP_ID) String groupId) {
         Optional<String> kafkaMessage = Optional.ofNullable(consumerRecord.value());
         if (kafkaMessage.isPresent()) {

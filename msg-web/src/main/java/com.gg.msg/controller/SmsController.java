@@ -1,5 +1,7 @@
 package com.gg.msg.controller;
 
+import com.ctrip.framework.apollo.Config;
+import com.ctrip.framework.apollo.spring.annotation.ApolloConfig;
 import com.gg.msg.domain.TaskInfo;
 import com.gg.msg.handler.handler.SmsHandler;
 import com.gg.msg.service.api.domain.MessageParam;
@@ -9,7 +11,6 @@ import com.gg.msg.service.api.enums.BusinessCode;
 import com.gg.msg.service.api.service.SendService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,15 +32,13 @@ public class SmsController {
     @Autowired
     private SendService sendService;
 
-    @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+    @ApolloConfig("unifiedMsg")
+    private Config config;
 
-
-    @RequestMapping("/redis")
-    public void testRedis() {
-        log.info(redisTemplate.opsForValue().get("1"));
+    @RequestMapping("/apollo")
+    public String testApollo() {
+        return config.getProperty("a", "c");
     }
-
 
     @GetMapping("/sendSmsV2")
     public SendResponse sendSmsV2(String phone) {

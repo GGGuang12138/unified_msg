@@ -74,6 +74,12 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>8.0.22</version>
             </dependency>
+            <!--apollo-->
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client-config-data</artifactId>
+                <version>1.9.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

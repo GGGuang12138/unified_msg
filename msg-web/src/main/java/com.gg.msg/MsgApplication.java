@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class MsgApplication {
 
     public static void main(String[] args) {
+        System.setProperty("apollo.config-service", "http://ip:7000");
         SpringApplication.run(MsgApplication.class, args);
     }
 
