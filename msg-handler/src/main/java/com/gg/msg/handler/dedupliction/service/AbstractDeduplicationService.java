@@ -2,8 +2,10 @@ package com.gg.msg.handler.dedupliction.service;
 
 import cn.hutool.core.collection.CollUtil;
 import com.gg.msg.constant.BaseConstant;
+import com.gg.msg.domain.AnchorInfo;
 import com.gg.msg.domain.TaskInfo;
 import com.gg.msg.handler.domain.DeduplicationParam;
+import com.gg.msg.support.utils.LogUtils;
 import com.gg.msg.support.utils.RedisUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +49,11 @@ public abstract class AbstractDeduplicationService implements DeduplicationServi
         if (readyPutRedisKey.size() > 0){
             putInRedis(readyPutRedisKey,inRedisValue,param);
         }
-        taskInfo.getReceiver().removeAll(filterReceiver);
+        // 移除过滤掉的接收者
+        if (CollUtil.isNotEmpty(filterReceiver)) {
+            taskInfo.getReceiver().removeAll(filterReceiver);
+            LogUtils.print(AnchorInfo.builder().businessId(taskInfo.getBusinessId()).ids(filterReceiver).state(param.getAnchorState().getCode()).build());
+        }
     }
 
     /**

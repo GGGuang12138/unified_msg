@@ -1,5 +1,6 @@
 package com.gg.msg.service.api.impl.service;
 
+import cn.monitor4all.logRecord.annotation.OperationLog;
 import com.gg.msg.service.api.domain.BatchSendRequest;
 import com.gg.msg.service.api.domain.SendRequest;
 import com.gg.msg.service.api.domain.SendResponse;
@@ -25,6 +26,7 @@ public class SendServiceImpl implements SendService {
     private ProcessController processController;
 
     @Override
+    @OperationLog(bizType = "SendService#send", bizId = "#sendRequest.messageTemplateId", msg = "#sendRequest")
     public SendResponse send(SendRequest sendRequest) {
         SendTaskModel sendTaskModel = SendTaskModel.builder()
                 .messageTemplateId(sendRequest.getMessageTemplateId())
@@ -43,6 +45,7 @@ public class SendServiceImpl implements SendService {
     }
 
     @Override
+    @OperationLog(bizType = "SendService#batchSend", bizId = "#batchSendRequest.messageTemplateId", msg = "#batchSendRequest")
     public SendResponse batchSend(BatchSendRequest batchSendRequest) {
         SendTaskModel sendTaskModel = SendTaskModel.builder()
                 .messageTemplateId(batchSendRequest.getMessageTemplateId())

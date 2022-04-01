@@ -1,7 +1,7 @@
 package com.gg.msg.handler.pending;
 
 import com.gg.msg.domain.TaskInfo;
-import com.gg.msg.handler.dedupliction.DeduplicationUnifiedService;
+import com.gg.msg.handler.dedupliction.DeduplicationRuleService;
 import com.gg.msg.handler.handler.Handler;
 import com.gg.msg.handler.handler.HandlerHolder;
 import lombok.Data;
@@ -25,12 +25,15 @@ public class TaskThread implements Runnable{
     private HandlerHolder handlerHolder;
 
     @Autowired
-    private DeduplicationUnifiedService deduplicationUnifiedService;
+    private DeduplicationRuleService deduplicationRuleService;
 
     @Override
     public void run() {
         // 统一去重处理
-        deduplicationUnifiedService.duplication(taskInfo);
+        deduplicationRuleService.duplication(taskInfo);
+        if (taskInfo.getReceiver().size() == 0){
+            return;
+        }
         // 获取对应消息的处理器去执行
         Handler handler = handlerHolder.route(taskInfo.getSendChannel());
         handler.doHandler(taskInfo);
